@@ -32,3 +32,9 @@
 .green {
 	background-color: #00FF00;
 }
+
+.error-box {
+	color: #FF0000;
+	font-weight: bold;
+	min-height: 1em;
+}

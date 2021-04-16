@@ -37,7 +37,7 @@ app.put('/api/account/:id/update', account.updateByID);
 app.post('/api/admin/create', account.create);
 app.get('/api/admin/search/:id', account.search);
 app.get('/api/admin/getaccounts', account.getAll);
-app.delete('/api/admin/remove', account.remove);
+app.delete('/api/admin/remove/:id', account.remove);
 
 const PORT = process.env.PORT || 8080;
 

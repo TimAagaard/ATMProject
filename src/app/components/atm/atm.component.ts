@@ -15,6 +15,7 @@ export class AtmComponent implements OnInit {
 	
 	accountNumber = '';
 	deltaAmount = '0';
+	errorMessage = '';
 	
 	
 
@@ -24,6 +25,8 @@ export class AtmComponent implements OnInit {
   }
   
   pressButton(button: any) {
+	  
+	  this.errorMessage = '';
 	  
 	  switch(button) {
 		
@@ -45,7 +48,14 @@ export class AtmComponent implements OnInit {
 			}
 			break;
 		case 'back':
-			this.accountNumber = this.accountNumber.substring(0, this.accountNumber.length - 1);
+			if(this.state === 0)
+			{
+				this.accountNumber = this.accountNumber.substring(0, this.accountNumber.length - 1);
+			}
+			else if(this.state === 2 || this.state === 3)
+			{
+				this.deltaAmount = this.deltaAmount.substring(0, this.deltaAmount.length - 1);
+			}
 			break;
 		case 'accept':
 			if(this.state === 0)
@@ -55,14 +65,30 @@ export class AtmComponent implements OnInit {
 			if(this.state === 2 || this.state === 3)
 			{
 				let newBalance = Number(this.deltaAmount);
+				let receipt: any = {};
 				if(this.state === 2)
 				{
 					newBalance *= -1;
+					receipt.transaction_type = 'withdrawal';
 				}
-				newBalance = Number(this.account.balance) + Number(newBalance);
-				this.updateAccount();
-				this.state = 1;
+				else
+				{
+					receipt.transaction_type = 'deposit';
+				}
+				
+				receipt.transaction_amount = this.deltaAmount;
+				
+				newBalance = Number(this.account.balance) + Number(newBalance); 
+				
+				receipt.new_balance = newBalance;
+				receipt.initial_balance = this.account.balance;
+				
 				this.account.balance = newBalance;
+				this.updateAccount();
+				this.downloadReceipt(receipt);
+				this.state = 1;
+				this.deltaAmount = '0';
+				
 			}
 			break;
 		default:
@@ -98,6 +124,18 @@ export class AtmComponent implements OnInit {
 	  
   }
   
+  downloadReceipt(receipt: any): void {
+	  
+	  let dataStr = JSON.stringify(receipt);
+	  let dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+	  let filename = 'receipt.json';
+	  let linkElement = document.createElement('a');
+	  linkElement.setAttribute('href', dataUri);
+	  linkElement.setAttribute('download', filename);
+	  linkElement.click();
+	  
+  }
+  
   fetchAccount(): void {
 	  
 	  
@@ -108,6 +146,7 @@ export class AtmComponent implements OnInit {
 			console.log(response);
 		}, error => {
 			console.log(error);
+			this.errorMessage = 'Error: Account cannot be found';
 		});
 		
 	  

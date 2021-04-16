@@ -1,15 +1,17 @@
 <div class="container">
 	<div class="atm-screen">
 		<div *ngIf="state === 0">
-			<p>Insert Account Number:</p>
+			<p>Enter Account Number:</p>
 			
 			<p>Account Number: {{accountNumber}}</p>
+			
+			<p>Press Accept when you are ready.</p>
 		</div>
 		
 		<div *ngIf="state === 1">
 			<p>Welcome Back {{account.first_name}} {{account.last_name}}</p>
 			
-			<p>Current Balance: ${{account.balance}}</p>
+			<p>Current Balance: {{account.balance | currency:'USD'}}</p>
 			
 			<div>
 				<p>Press 1 to Withdraw</p>
@@ -20,15 +22,19 @@
 		
 		<div *ngIf="state === 2">
 			<p>Withdraw</p>
-			<p>Current Balance: ${{account.balance}}</p>
-			<p>Amount: ${{deltaAmount}}.00</p>
+			<p>Current Balance: {{account.balance | currency:'USD'}}</p>
+			<p>Amount: {{deltaAmount | currency:'USD'}}</p>
 		</div>
 		
 		<div *ngIf="state === 3">
 			<p>Deposit</p>
-			<p>Current Balance: ${{account.balance}}</p>
-			<p>Amount: ${{deltaAmount}}.00</p>
+			<p>Current Balance: {{account.balance | currency:'USD'}}</p>
+			<p>Amount: {{deltaAmount | currency:'USD'}}</p>
 		</div>
+	</div>
+	
+	<div class="error-box">
+		{{errorMessage}}
 	</div>
 	
 	<div class="grid-container">

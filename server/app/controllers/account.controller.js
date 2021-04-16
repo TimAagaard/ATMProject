@@ -8,7 +8,14 @@ exports.getByID = (req, res) => {
 	const id = req.params.id;
 	
 	Account.findByPk(id).then(data => {
-		res.send(data);
+		if(data)
+		{
+			res.send(data);
+		}
+		res.send(404).send({
+			message: 'Error: Account not found'
+		});
+		
 	}).catch(err => {
 		res.status(500).send({
 			message: 'Error: Could not find user with ID: ' + id
@@ -53,7 +60,7 @@ exports.create = (req, res) => {
 	};
 	
 	Account.create(account).then(data => {
-		res.send('success');
+		res.send(data);
 	}).catch(err => {
 		res.status(500).send({
 			message: 'Error creating account (1)',
@@ -102,7 +109,9 @@ exports.getAll = (req, res) => {
 
 exports.remove = (req, res) => {
 	
-	const id = req.body.id;
+	const id = req.params.id;
+	
+	console.log(id);
 	
 	Account.destroy({
 		where: {id: id}

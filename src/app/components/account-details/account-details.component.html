@@ -1,0 +1,23 @@
+<div>
+	<h3>Account Information</h3>
+	<table class="table table-sm">
+		<tr>
+			<td class="a-r header">Account ID: </td>
+			<td>{{account.id || 'New Account'}}</td>
+		</tr>
+		<tr>
+			<td class="a-r header">First Name: </td>
+			<td><input type="text" [(ngModel)]="account.first_name" placeholder="First Name" class="form-control"></td>
+		</tr>
+		<tr>
+			<td class="a-r header">Last Name: </td>
+			<td><input type="text" [(ngModel)]="account.last_name" placeholder="Last Name" class="form-control"></td>
+		</tr>
+		<tr>
+			<td class="a-r header">Current Balance: $</td>
+			<td><input type="text" [(ngModel)]="account.balance" placeholder="Balance" class="form-control"></td>
+		</tr>
+	</table>
+	<button class="btn btn-primary w-100" (click)="updateAccount()">Save</button>
+	<div>{{status}}</div>
+</div>

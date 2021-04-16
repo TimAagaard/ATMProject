@@ -8,7 +8,7 @@ To Run:
 
 4) Install and start MySQL
 
-5) Import the database 'test.db' located in the root of the project folder into your local MySQL installation
+5) Import the database 'atmproject.sql' located in the root of the project folder into your local MySQL installation
 
 6) Either set the username and password for the database to root / rootpass, or edit server/app/config/db.config.js to reflect your credentials
 
@@ -30,7 +30,7 @@ GET /api/admin/search/:id - searches for account either by account ID or first /
 
 GET /api/admin/getaccounts - gets every account
 
-DELETE /api/admin/remove - removes an account
+DELETE /api/admin/remove/:id - removes an account
 
 <hr>
 
