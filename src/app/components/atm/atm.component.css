@@ -1,0 +1,34 @@
+.container {
+	padding: 25px;
+}
+
+.atm-screen {
+	width: 500px;
+	min-height: 300px;
+	background-color: #A9F1F5;
+}
+
+.grid-container {
+	display: grid;
+	grid-gap: 25px;
+	grid-template-columns: auto auto auto auto;
+	max-width: 240px;
+	padding: 10px;
+}
+
+.atm-button {
+	width: 60px;
+	height: 60px;
+}
+
+.red {
+	background-color: #FF0000;
+}
+
+.yellow {
+	background-color: #FFFF00;
+}
+
+.green {
+	background-color: #00FF00;
+}

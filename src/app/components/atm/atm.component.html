@@ -1,0 +1,52 @@
+<div class="container">
+	<div class="atm-screen">
+		<div *ngIf="state === 0">
+			<p>Insert Account Number:</p>
+			
+			<p>Account Number: {{accountNumber}}</p>
+		</div>
+		
+		<div *ngIf="state === 1">
+			<p>Welcome Back {{account.first_name}} {{account.last_name}}</p>
+			
+			<p>Current Balance: ${{account.balance}}</p>
+			
+			<div>
+				<p>Press 1 to Withdraw</p>
+				<p>Press 2 to Deposit</p>
+				<p>Press Cancel to Sign Out</p>
+			</div>
+		</div>
+		
+		<div *ngIf="state === 2">
+			<p>Withdraw</p>
+			<p>Current Balance: ${{account.balance}}</p>
+			<p>Amount: ${{deltaAmount}}.00</p>
+		</div>
+		
+		<div *ngIf="state === 3">
+			<p>Deposit</p>
+			<p>Current Balance: ${{account.balance}}</p>
+			<p>Amount: ${{deltaAmount}}.00</p>
+		</div>
+	</div>
+	
+	<div class="grid-container">
+		<div class="grid-item"><button class="atm-button" (click)="pressButton(1)">1</button></div>
+		<div class="grid-item"><button class="atm-button" (click)="pressButton(2)">2</button></div>
+		<div class="grid-item"><button class="atm-button" (click)="pressButton(3)">3</button></div>
+		<div class="grid-item"><button class="atm-button red" (click)="pressButton('cancel')">Cancel</button></div>
+		<div class="grid-item"><button class="atm-button" (click)="pressButton(4)">4</button></div>
+		<div class="grid-item"><button class="atm-button" (click)="pressButton(5)">5</button></div>
+		<div class="grid-item"><button class="atm-button" (click)="pressButton(6)">6</button></div>
+		<div class="grid-item"><button class="atm-button yellow" (click)="pressButton('back')">Back</button></div>
+		<div class="grid-item"><button class="atm-button" (click)="pressButton(7)">7</button></div>
+		<div class="grid-item"><button class="atm-button" (click)="pressButton(8)">8</button></div>
+		<div class="grid-item"><button class="atm-button" (click)="pressButton(9)">9</button></div>
+		<div class="grid-item"><button class="atm-button green" (click)="pressButton('accept')">Accept</button></div>
+		<div class="grid-item">&nbsp;</div>
+		<div class="grid-item"><button class="atm-button" (click)="pressButton(0)">0</button></div>
+		<div class="grid-item">&nbsp;</div>
+		<div class="grid-item">&nbsp;</div>
+	</div>
+</div>

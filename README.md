@@ -1,27 +1,48 @@
-# AtmProjectFrontend
+To Run:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+1) Install Node.js and make sure it is in your PATH
 
-## Development server
+2) Install Angular-CLI
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+3) CD into the project directory
 
-## Code scaffolding
+4) Install and start MySQL
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+5) Import the database 'test.db' located in the root of the project folder into your local MySQL installation
 
-## Build
+6) Either set the username and password for the database to root / rootpass, or edit server/app/config/db.config.js to reflect your credentials
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+4) Start the back-end by running `node server/server.js`
 
-## Running unit tests
+5) Start the front-end by running `ng serve --open`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<hr>
 
-## Running end-to-end tests
+Routes:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+GET /api/account/:id/view - gets all account information by :id/view
 
-## Further help
+PUT /api/account/:id/update - Updates an account
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+POST /api/admin/create - Creates a new account
+
+GET /api/admin/search/:id - searches for account either by account ID or first / last name
+
+GET /api/admin/getaccounts - gets every account
+
+DELETE /api/admin/remove - removes an account
+
+<hr>
+
+How To Use:
+
+Should be pretty self explanatory
+
+The default page is the ATM
+
+The Navigation bar at the top will allow you to switch between that and the admin page
+
+The ATM page has prompts that explain how to use it
+
+The admin page has a button for creating new users, a search bar, and a list of users with buttons to delete / update them
+

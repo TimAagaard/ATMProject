@@ -1,0 +1,21 @@
+<div>
+	<button>Create New</button>
+	<input type="text"><button>Search</button>
+</div>
+
+<div>
+	<table>
+		<tr>
+			<td class="header">Account ID</td>
+			<td class="header">Account Holder</td>
+			<td class="header">Account Balance</td>
+			<td class="header">Tools</td>
+		</tr>
+		<tr *ngFor="let account of accounts">
+			<td>{{account.id}}</td>
+			<td>{{account.first_name}} {{account.last_name}}</td>
+			<td>{{account.balance}}</td>
+			<td><button>Delete</button><button>Update</button>
+		</tr>
+	</table>
+</div>
