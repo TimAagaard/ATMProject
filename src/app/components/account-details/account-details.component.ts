@@ -8,16 +8,21 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class AccountDetailsComponent implements OnInit {
 	
+	// Account object handed in from admin-component
 	@Input() account?: any;
+	
+	// Event Emitter to push newly created accounts onto admin-component's accounts array
 	@Output() newAccount = new EventEmitter();
+	
+	// For holding success / error messages
 	status = '';
 	
+	// Creates or updates an account depending on whether or not the id value is present
 	updateAccount() : void {
-		
-		console.log(this.account);
 		
 		this.status = '';
 		
+		// Update
 		if(this.account.id)
 		{
 			this.accountService.updateAccount(this.account.id, this.account)
@@ -29,6 +34,7 @@ export class AccountDetailsComponent implements OnInit {
 					this.status = 'Error updating account.';
 				});
 		}
+		// Create
 		else
 		{
 			this.accountService.createAccount(this.account)

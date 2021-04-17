@@ -20,20 +20,11 @@ const db = require('./app/models');
 //db.sequelize.sync({force: true});
 db.sequelize.sync();
 
-// TEST ROUTE
-/*
-app.get('/api/account/:id/view', (req, res) => {
-	res.json({
-		id: req.params.id,
-		data: 'test'
-	});
-});
-*/
-
+// ATM routes
 app.get('/api/account/:id/view', account.getByID);
-
 app.put('/api/account/:id/update', account.updateByID);
 
+// Admin routes
 app.post('/api/admin/create', account.create);
 app.get('/api/admin/search/:id', account.search);
 app.get('/api/admin/getaccounts', account.getAll);

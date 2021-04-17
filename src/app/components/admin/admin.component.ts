@@ -8,18 +8,26 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class AdminComponent implements OnInit {
 	
+	// Array of accounts
 	accounts: any = [];
+	
+	// Search string for finding accounts by id, first_name, OR last_name
 	searchString = '';
+	
+	// The account to send to account-details component
 	selectedAccount: any = null;
 	
+	// Push new account onto the accounts array (called by account-details component's event emitter)
 	pushAccount(account: any) {
 		this.accounts.push(account);
 	}
 	
+	// Select an existing account for the account-details component
 	selectAccount(obj: any): void {
 		this.selectedAccount = obj;
 	}
 	
+	// Create a new account to be filled out in the account-details component
 	createNewAccount(): void {
 		this.selectedAccount = {
 			first_name: "",
@@ -28,6 +36,7 @@ export class AdminComponent implements OnInit {
 		};
 	}
 	
+	// Search for and display accounts matching searchString
 	searchAccount(): void {
 		console.log('searching');
 		if(this.searchString)
@@ -46,6 +55,7 @@ export class AdminComponent implements OnInit {
 		}
 	}
 	
+	// Get all accounts
 	getAllAccounts(): void {
 		this.accountService.getAllAccounts()
 			.subscribe(response => {
@@ -56,6 +66,7 @@ export class AdminComponent implements OnInit {
 			});
 	}
 	
+	// Delete an account
 	deleteAccount(id: any, index: number): void {
 		
 		this.accountService.deleteAccount(id)

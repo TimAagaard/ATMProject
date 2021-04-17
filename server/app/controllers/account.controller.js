@@ -71,12 +71,10 @@ exports.create = (req, res) => {
 	
 };
 
+// Finds accounts by searching against id, first_name, OR last_name
 exports.search = (req, res) => {
 	
-	//let condition = {id: {[Op.like]: `%${req.params.id}%`}};
-	
-	//res.send(req.params.id);
-	
+	// If first_name, last_name, OR id LIKE req.params.id
 	let condition = {[Op.or]: [
 	
 		{first_name: {[Op.like]: `%${req.params.id}%`}},
@@ -84,7 +82,6 @@ exports.search = (req, res) => {
 		{id: {[Op.like]: `%${req.params.id}%`}}
 		
 	]};
-	
 	
 	Account.findAll({
 		where: condition
@@ -99,6 +96,7 @@ exports.search = (req, res) => {
 	
 };
 
+// Gets all accounts
 exports.getAll = (req, res) => {
 	Account.findAll({}).then(data => {
 		res.send(data);
@@ -107,6 +105,7 @@ exports.getAll = (req, res) => {
 	});
 };
 
+// Deletes an account
 exports.remove = (req, res) => {
 	
 	const id = req.params.id;
